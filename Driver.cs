@@ -10,12 +10,11 @@ internal class Program
         // Welcome User
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
 
-        // Create array to hold 9 possible choices on game board
-        int[] gameBoard = new int[9];
+        // Create 3X3 board
+        int[,] gameBoard = new int[3,3];
 
         // Initialize Variables
         int playerID = 0;
-        int playerMove = 0;
         bool invalidInput = false;
 
 
@@ -32,41 +31,47 @@ internal class Program
             {
                 playerID = 2;
             }
-            
+
             // THIS IS FOR TESTING
             // Console.WriteLine(string.Join(", ", gameBoard));
 
             // Get input until it is valid (integer, in range, move not taken)
             do
             {
-                // Ask player for move
-                Console.WriteLine("Make your move Player " + playerID + ". Enter a number 1-9: ");
+                // Ask for player to make move
+                Console.WriteLine($"Make your move Player {playerID}");
 
-                // Get move, execute the following if input is an integer
-                if (int.TryParse(Console.ReadLine(), out playerMove))
+                // Get row number
+                Console.Write($"Enter row number (1-{gameBoard.GetLength(0)}):");
+                if (int.TryParse(Console.ReadLine(), out int rowInput) && rowInput >= 1 && rowInput <= 3)
                 {
-                    // Change range from user input 1-9 to array indicies 0-8
-                    playerMove--;
+                    // Get column number
+                    Console.Write($"Enter column number (1-{gameBoard.GetLength(1)}):");
+                    if (int.TryParse(Console.ReadLine(), out int colInput) && colInput >= 1 && colInput <= 3)
+                    {
+                        // Change range from user input 1-3 to array indicies 0-2
+                        rowInput--;
+                        colInput--;
 
-                    // If move is out of range, try again
-                    if (playerMove < 1 || playerMove > 9)
-                    {
-                        invalidInput = true;
-                        Console.WriteLine("Please enter a number 1-9.");
+                        // If move spot is taken, try again
+                        if (gameBoard[rowInput, colInput] != 0)
+                        {
+                            invalidInput = true;
+                            Console.WriteLine("Sorry! That move has been taken. Please enter a valid move.");
+                        }
+                        // If no errors, put move on board
+                        else
+                        {
+                            invalidInput = false;
+                            gameBoard[rowInput, colInput] = playerID;
+                        }
                     }
-                    // If move spot is taken, try again
-                    else if (gameBoard[playerMove] != 0)
-                    {
-                        invalidInput = true;
-                        Console.WriteLine("Sorry! That move has been taken. Please enter a valid move.");
-                    }
-                    // If no errors, input is valid
                     else
                     {
-                        invalidInput = false;
+                        invalidInput = true;
+                        Console.WriteLine("Please enter a valid integer.");
                     }
                 }
-                // If input is not an integer, try again
                 else
                 {
                     invalidInput = true;
@@ -75,9 +80,6 @@ internal class Program
 
             // Exit input loop if input is valid
             } while (invalidInput);
-
-            // Put player move on board if valid
-            gameBoard[playerMove] = playerID;
 
             // Print board
             //Support s = new Support();
