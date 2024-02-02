@@ -26,6 +26,7 @@ namespace Mission4_3_11
                 {
                     Console.Write(board[i, j] == 1 ? "X|" : board[i, j] == 2 ? "O|" : " |");
                 }
+                Console.WriteLine();
             }
         }
     }

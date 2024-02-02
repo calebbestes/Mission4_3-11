@@ -82,8 +82,8 @@ internal class Program
             } while (invalidInput);
 
             // Print board
-            //Support s = new Support();
-            //s.PrintBoard(gameBoard);
+            Support s = new Support();
+            s.PrintBoard(gameBoard);
 
             // Get winner, if any
             //s.GetWinner(gameBoard, out bool win, out int whoWon);
