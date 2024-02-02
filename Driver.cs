@@ -17,7 +17,6 @@ internal class Program
         int playerID = 0;
         bool invalidInput = false;
 
-
         // Take turns for as many spots on game board
         for (int i = 0; i < gameBoard.Length; i++)
         {
@@ -31,9 +30,6 @@ internal class Program
             {
                 playerID = 2;
             }
-
-            // THIS IS FOR TESTING
-            // Console.WriteLine(string.Join(", ", gameBoard));
 
             // Get input until it is valid (integer, in range, move not taken)
             do
