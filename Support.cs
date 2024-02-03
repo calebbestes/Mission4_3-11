@@ -18,6 +18,7 @@ namespace Mission4_3_11
     */
     internal class Support
     {
+        //prints the board
         public static void PrintBoard(int[,] board)
         {
             for (int i = 0; i < board.GetLength(0); i++)
@@ -29,6 +30,8 @@ namespace Mission4_3_11
                 Console.WriteLine();
             }
         }
+
+        // finds if there is a winner and who it is
         public static bool GetWinner(int[,] board, out int whoWon)
         {
             // Check rows, columns, and diagonals for a win
@@ -39,6 +42,7 @@ namespace Mission4_3_11
             whoWon = 0;
             return false;
         }
+        // checks row if theres a winner
         private static bool CheckRowWin(int[,] board, out int whoWon)
         {
             whoWon = 0;
@@ -52,6 +56,7 @@ namespace Mission4_3_11
             }
             return false;
         }
+        // checks column if there's a winner
         private static bool CheckColumnWin(int[,] board, out int whoWon)
         {
             whoWon = 0;
@@ -65,6 +70,7 @@ namespace Mission4_3_11
             }
             return false;
         }
+        // checks diagonal if there's a winner
         private static bool CheckDiagonalWin(int[,] board, out int whoWon)
         {
             whoWon = 0;
