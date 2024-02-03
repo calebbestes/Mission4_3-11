@@ -16,6 +16,7 @@ internal class Program
         // Initialize Variables
         int playerID = 0;
         bool invalidInput = false;
+        bool gameEnded = false;
 
         // Take turns for as many spots on game board
         for (int i = 0; i < gameBoard.Length; i++)
@@ -78,11 +79,25 @@ internal class Program
             } while (invalidInput);
 
             // Print board
-            Support s = new Support();
-            s.PrintBoard(gameBoard);
+            // Support s = new Support();
+            Support.PrintBoard(gameBoard);
+
+
 
             // Get winner, if any
-            //s.GetWinner(gameBoard, out bool win, out int whoWon);
-        }   
+            if (Support.GetWinner(gameBoard, out int whoWon))
+            {
+                Console.WriteLine($"Player {whoWon} wins!");
+                gameEnded = true;
+                break; // end the game
+            }
+        }
+        
+        // if there's no winner, it's a draw
+        if (!gameEnded)
+        {
+            Console.WriteLine("It's a draw! The game has ended.");
+        }
+
     }
 }
