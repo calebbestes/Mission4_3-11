@@ -99,5 +99,10 @@ internal class Program
             Console.WriteLine("It's a draw! The game has ended.");
         }
 
+        // Wait for user input before closing the console window
+        Console.WriteLine("Press Enter to exit...");
+        Console.ReadLine();
+
+
     }
 }
